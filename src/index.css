@@ -1,0 +1,60 @@
+:root {
+  --back-col: #131010;
+  --text-col: #fff0dc;
+  --back-elem: #543a14;
+  --dyn-elem: #f0bb78;
+  --dyn-hov: #f2613f;
+}
+
+body {
+  font-family: sans-serif;
+  line-height: 1.5;
+  background-color: var(--back-col);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+li {
+  list-style: none;
+}
+
+.container {
+  width: 375px;
+  padding: 0 16px;
+  margin: 0 auto;
+  padding-bottom: 30px;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 768px;
+    padding: 0 32px;
+    padding-bottom: 30px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    width: 1440px;
+    padding-bottom: 30px;
+  }
+}

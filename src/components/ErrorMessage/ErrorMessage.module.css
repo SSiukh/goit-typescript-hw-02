@@ -1,0 +1,9 @@
+.error {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+.text {
+  color: var(--dyn-hov);
+  font-size: 26px;
+}
