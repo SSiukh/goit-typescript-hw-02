@@ -2,13 +2,20 @@ import s from "./ImageModal.module.css";
 import ReactModal from "react-modal";
 import { format } from "date-fns";
 import { BiLike } from "react-icons/bi";
+import { ModalData } from "../App";
 
 ReactModal.setAppElement("#root");
 
-const ImageModal = ({ isOpen, data, onClose }) => {
+interface ImageModalProps {
+  isOpen: boolean;
+  data: ModalData;
+  onClose: () => void;
+}
+
+const ImageModal: React.FC<ImageModalProps> = ({ isOpen, data, onClose }) => {
   const { author, likes, descr, date, photo } = data;
 
-  const formatDate = format(date, "dd/MM/yyyy");
+  const formatDate: string = format(date, "dd/MM/yyyy");
   return (
     <div>
       <ReactModal

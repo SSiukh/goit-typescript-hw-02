@@ -1,18 +1,24 @@
 import s from "./SearchBar.module.css";
 import { IoSearch } from "react-icons/io5";
 import toast, { Toaster } from "react-hot-toast";
+import { FormEvent } from "react";
 
-const SearchBar = ({ onSubmit }) => {
-  const handleSubmit = (e) => {
+interface SearchBarProps {
+  onSubmit: (word: string) => void;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    const value = e.target.elements.word.value.trim();
+    const form = e.target as HTMLFormElement;
+    const value: string = (form.elements.namedItem("word") as HTMLInputElement).value.trim();
 
     if (!value) {
       toast.error("The search field must be filled");
       return;
     }
     onSubmit(value);
-    e.target.reset();
+    form.reset();
   };
 
   return (

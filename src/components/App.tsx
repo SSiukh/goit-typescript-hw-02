@@ -1,21 +1,30 @@
-import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn";
-import SearchBar from "./SearchBar/SearchBar";
-import ImageGallery from "./ImageGallery/ImageGallery";
-import Loader from "./Loader/Loader";
-import ErrorMessage from "./ErrorMessage/ErrorMessage";
-import ImageModal from "./ImageModal/ImageModal";
+import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn.tsx";
+import SearchBar from "./SearchBar/SearchBar.tsx";
+import ImageGallery from "./ImageGallery/ImageGallery.tsx";
+import Loader from "./Loader/Loader.tsx"; 
+import ErrorMessage from "./ErrorMessage/ErrorMessage.tsx";
+import ImageModal from "./ImageModal/ImageModal.tsx";
 import { useState, useEffect, useRef } from "react";
 import { fetchImagesUsingWord } from "../fetchData";
+import { UnsplashResult } from "../Api.types";
+
+export interface ModalData {
+  author: string;
+  likes: number;
+  descr: string;
+  date: string;
+  photo: string;
+}
 
 function App() {
-  const [searchWord, setSearchWord] = useState("");
-  const [searchData, setSearchData] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [totalPages, setTotalPages] = useState(0);
-  const [page, setPage] = useState(1);
-  const [modal, setModal] = useState(null);
-  const cardRef = useRef(null);
+  const [searchWord, setSearchWord] = useState<string>("");
+  const [searchData, setSearchData] = useState<UnsplashResult[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [totalPages, setTotalPages] = useState<number>(0);
+  const [page, setPage] = useState<number>(1);
+  const [modal, setModal] = useState<ModalData | null>(null);
+  const cardRef = useRef<HTMLLIElement>(null);
 
   useEffect(() => {
     if (searchWord) {
@@ -40,17 +49,17 @@ function App() {
 
   useEffect(() => {
     if (searchData.length > 12) {
-      cardRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+      cardRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   }, [searchData]);
 
-  const handleSearch = (newWord) => {
+  const handleSearch = (newWord: string): void => {
     setSearchWord(newWord);
     setSearchData([]);
     setPage(1);
   };
 
-  const loadMore = () => {
+  const loadMore = (): void => {
     setPage((prev) => prev + 1);
   };
 
